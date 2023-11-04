@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+	<title>
+		Portfolio Gallery
+		using HTML and CSS
+	</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</header>
+<style>
+	/* wildcard styling */
+	* {
+		box-sizing: border-box;
+	}
+
+	/* padding for whole body */
+	body {
+		padding: 15px;
+	}
+
+	/* styling body */
+	.container {
+		max-width: 1200px;
+		margin: auto;
+	}
+
+	h1 {
+		color: #3A8994;
+	}
+
+	/* anchor tag decoration */
+	a {
+		text-decoration: none;
+		color: #5673C8;
+	}
+
+	a:hover {
+		color: red;
+	}
+
+	/* paragraph tag decoration */
+	p {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+		overflow: hidden;
+
+	}
+
+	/* row and column decoration */
+	.row {
+		margin: 0px -18px;
+		padding: 8px;
+	}
+
+	.row>.column {
+		padding: 6px;
+	}
+
+	.column {
+		float: left;
+		width: 25%;
+
+	}
+	.column:hover {
+		padding: 8px;
+	
+	}
+
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	/* content decoration */
+	.content {
+		background-color:azure;
+		padding: 10px;
+		border: 1px solid gray;
+	}
+	.content:hover {
+
+		background-color:rgb(190, 255, 255);
+	}
+
+	/* window size 850 width set */
+	@media screen and (max-width: 850px) {
+		.column {
+			width: 50%;
+		}
+	}
+
+	.blue{
+		color: rgb(0, 76, 255);
+	}
+
+	/*
+Set a matching height and width that looks good, and use the border-radius property to add rounded corners to an image. 
+50% will make the image circular:
+
+*/
+	.avatar {
+		vertical-align: middle;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+	}
+
+	/* window size 400 width set */
+	@media screen and (max-width: 400px) {
+		.column {
+			width: 100%;
+		}
+	}
+</style>
+
+<body>
+
+	<!-- title and tag -->
+	<div class="container">
+		<h1>My Potfolio</h1>
+		<h3>Hi I am a Full Stack Developer</h3>
+		<hr>
+
+		<!-- Content of the body-->
+		<h2></h2>
+
+		<img src="data:image/jpeg;base64,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"
+			alt="Avatar" class="avatar">
+		<h2>ZWELLY SITHOLE</h2>
+		<h3>contact :</h3>
+		<p class="blue">zwelly.developer@gmail.com</p>
+		<p class="blue"><a href="https://github.com/ZwellyTheKidd">Github</a></p>
+		<p class="blue"><a href="https://www.linkedin.com/in/zwelly-sithole-526828216/">linkedin</a></p>
+		<p><strong>Motto:</strong></p>
+		<blockquote> "Striving for Excellence in Every Endeavor."
+		</blockquote>
+		<span>
+			<p>Hi I am a full stack developer currently enrolled in the Full Stack programme at Digital Academy under
+				Shapper [Oct-2023 / Mar-2023]. I am currently doing the following:</p>
+		</span>
+
+
+		<div class="row">
+			<div class="column">
+				<div class="content">
+					<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210322182256/AngularJS-Tutorial.png"
+						alt="" style="width:100%">
+					<h3>
+						<a href="#">Angular Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						AngularJS was developed in 2008-2009 by Misko Hevery and Adam Abrons
+						and is now maintained by Google.
+						AngularJS is a Javascript open-source front-end framework that is mainly
+						used to develop single-page web applications(SPAs).
+						It is a continuously growing and expanding framework which provides better
+						ways for developing web applications.
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://www.20i.com/blog/wp-content/uploads/2022/08/git-blog-header.png" alt=""
+						style="width:100%">
+					<h3>
+						<a href="#">Git Description</a>
+					</h3>
+
+					<!-- springboot  postgres sql typescript docker figma git github trello node js vim  -->
+
+
+					<p>
+
+						Git is a widely used, open-source version control system that allows
+						developers to manage and track changes in their code and collaborate
+						effectively with others.Git is a distributed version control system
+						that enables developers to keep track of changes made to their source code over time.
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://cms-assets.tutsplus.com/uploads/users/769/syllabuses/1232/preview_image/Java-8-Android-Development-Default-Static-interface-Methods.png"
+						alt="" style="width:100%">
+					<h3>
+						<a href="#">JAVA8 Description</a>
+					</h3>
+
+
+
+
+					<p>
+
+						Java 8 is a major version of the Java programming language and platform, released by Oracle in
+						March 2014.
+						It introduced several significant features and improvements to the language, making it a pivotal
+						release.
+						Some key features of Java 8 include:
+					</p>
+
+
+
+				</div>
+			</div>
+
+
+
+			
+
+			<div class="column">
+				<div class="content">
+					<img src="https://miro.medium.com/v2/resize:fit:1358/0*OJAUWZoGbVq--rNd.png" alt=""
+						style="width:100%">
+					<h3>
+						<a href="#">Typescript Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+
+						TypeScript is an open-source programming language developed and maintained by Microsoft.
+						It is a superset of JavaScript, meaning that it extends the capabilities of JavaScript
+						by adding static typing and other features.
+					</p>
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="column">
+				<div class="content">
+					<img src="https://editor.analyticsvidhya.com/uploads/90178spring-boot-logo.png" alt=""
+						style="width:100%">
+					<h3>
+						<a href="#">Springboot Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						Spring Boot is an open-source framework and part of the larger Spring ecosystem for building
+						robust
+						and scalable Java applications. It simplifies and accelerates the process of developing
+						production-ready applications by providing a set of conventions, templates, and
+						pre-configured settings. Here's a brief overview of what Spring Boot is:
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+
+			<div class="column">
+				<div class="content">
+					<img src="https://sempreupdate.com.br/wp-content/uploads/2022/12/novo-malware-drokbk-usa-o-github-como-um-resolvedor-de-dead-drop-2-scaled.jpg"
+						alt="" style="width:100%">
+					<h3>
+						<a href="#">Github Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						GitHub is a web-based platform and service that provides a variety of features
+						for software developers and teams to collaborate on code, manage version control,
+						and host and share software projects.
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png"
+						alt="" style="width:100%">
+					<h3>
+						<a href="#">Node js Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						Node.js is an open-source, server-side runtime environment built on Chrome's V8 JavaScript
+						engine.
+						It allows developers to run JavaScript code on the server, which traditionally ran in web
+						browsers.
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://www.sqlsplus.com/wp-content/uploads/2020/06/PostgreSQL-CREATE-USER.jpg" alt=""
+						style="width:100%">
+					<h3>
+						<a href="#">PostgreSQL Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						PostgreSQL, often referred to as "Postgres," is a powerful open-source relational database management
+						 system (RDBMS) known for its robust features and performance. PostgreSQL is a relational database system,
+						  which means it stores and manages data in structured tables with rows and columns.
+					</p>
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="column">
+				<div class="content">
+					<img src="https://www.geeksforgeeks.org/wp-content/uploads/html.png" alt="" style="width:100%">
+					<h3>
+						<a href="#">HTML Description</a>
+					</h3>
+
+
+
+
+					<p>
+						HTML stands for Hyper Text Markup
+						Language. It is used to design web
+						pages using markup language. HTML
+						is the combination of Hypertext and
+						Markup language. Hypertext defines
+						the link between the web pages.
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://www.geeksforgeeks.org/wp-content/uploads/CSS.png" alt="" style="width:100%">
+					<h3>
+						<a href="#">CSS Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						Cascading Style Sheets, fondly referred
+						to as CSS, is a simply designed language
+						intended to simplify the process of
+						making web pages presentable. CSS allows
+						you to apply styles to web pages.
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://sm.pcmag.com/pcmag_uk/review/t/trello/trello_wjzc.png"
+						alt="" style="width:100%">
+					<h3>
+						<a href="#">Trello Description</a>
+					</h3>
+
+
+
+
+
+					<p>
+						Trello is a popular web-based project management and collaboration tool that provides a visual
+						 and flexible way to organize tasks and projects. Trello is designed for team collaboration.
+						  Team members can be invited to boards, and they can comment, attach files, and add due dates to cards. 
+					</p>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="content">
+					<img src="https://www.geeksforgeeks.org/wp-content/uploads/javascript.png" alt=""
+						style="width:100%">
+					<h3>
+						<a href="#">JavaScript Tutorials</a>
+					</h3>
+
+
+
+
+
+					<p>
+						Javascript was developed by Brendan
+						Eich in 1995. At first, it was called
+						LiveScript but was later name to
+						JavaScript. JavaScript is the muscle
+						of the structure
+					</p>
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>Copyright &copy; ZwellyTheKidd</footer>
+</body>
+
+</html>
